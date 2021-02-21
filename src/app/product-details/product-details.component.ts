@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../cart.service';
+import { CartService } from '../service/cart.service';
 import { products } from '../products';
+import { Product } from '../model/product';
 
 @Component({
   selector: 'app-product-details',
@@ -10,7 +11,7 @@ import { products } from '../products';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product:any;
+  product!: Product;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
     // Find the product that correspond with the id provided in route.
-    this.product = products.find(product => product.id === productIdFromRoute);
+    this.product = products.find(p => p.id === productIdFromRoute)!;
 
     // FIXIT becase params.get() returen an union type, string | null
     // this.route.paramMap.subscribe(params => {
@@ -29,7 +30,7 @@ export class ProductDetailsComponent implements OnInit {
     // });
   }
 
-  addToCart(product: any): void {
+  addToCart(product: Product): void {
     this.cartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }
