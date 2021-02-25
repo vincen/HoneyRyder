@@ -9,6 +9,7 @@ import { CartService } from '../service/cart.service';
 })
 export class ShippingComponent implements OnInit {
 
+  // TODO fix this any type
   shippingCosts: any = [];
 
   fetchShippings() {

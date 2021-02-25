@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../model/product';
 import { products } from '../products';
 
 @Component({
@@ -8,7 +9,7 @@ import { products } from '../products';
 })
 export class ProductListComponent implements OnInit {
 
-  products = products;
+  products: Product[] = products;
 
   share() {
     window.alert('The product has been shared!');
